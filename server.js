@@ -3,31 +3,58 @@ const app = express();
 require("dotenv").config()
 const db = require("./config/db")
 app.use(express.json());
-const userModel = require("./models/User")
 
-app.post('/api/user', async (req, res) => {
+// const userModel = require("./models/User")
+const movieModel = require("./models/Movie")
+
+// app.post('/api/user', async (req, res) => {
+//   try {
+//     const { name, family, age, email, mbtiType, username, password, favoriteGenres, watchlist, isAdmin } = req.body;
+
+//     const newUser = new userModel({
+//       name,
+//       family,
+//       age,
+//       email,
+//       mbtiType,
+//       username,
+//       password,
+//       favoriteGenres,
+//       watchlist,
+//       isAdmin
+//     });
+
+//     await newUser.save();
+
+//     res.status(201).json({ message: "User added successfully!", user: newUser });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Error adding user", error: err.message });
+//   }
+// });
+app.post('/api/movie', async (req, res) => {
   try {
-    const { name, family, age, email, mbtiType, username, password, favoriteGenres, watchlist, isAdmin } = req.body;
+    const { title , description , director , cast , releaseDate , duration , stars , genre , country } = req.body;
 
-    const newUser = new userModel({
-      name,
-      family,
-      age,
-      email,
-      mbtiType,
-      username,
-      password,
-      favoriteGenres,
-      watchlist,
-      isAdmin
+    const newMovie = new movieModel({
+      title,
+      description,
+      director,
+      cast,
+      releaseDate,
+      duration,
+      stars,
+      genre,
+      country,
+
     });
 
-    await newUser.save();
+    await newMovie.save();
 
-    res.status(201).json({ message: "User added successfully!", user: newUser });
+    res.status(201).json({ message: "Movie added successfully!", user: newMovie });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Error adding user", error: err.message });
+    res.status(500).json({ message: "Error adding Movie", error: err.message });
   }
 });
 
