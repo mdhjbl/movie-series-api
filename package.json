@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "fastest-validator": "^1.19.1",
     "mongoose": "^8.17.1"
   }
 }
